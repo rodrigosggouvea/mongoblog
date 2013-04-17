@@ -4,7 +4,7 @@ class Article
   field :content, type: String
   field :published_on, type: Date
 
-  referenced_in :user
+  belongs_to :user
   embeds_many :comments
 
   validates :title, :presence => true

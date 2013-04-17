@@ -1,4 +1,6 @@
 class ArticlesController < ApplicationController
+  before_filter :authenticate_user! :except => [:index]
+  
   # GET /articles
   # GET /articles.json
   def index

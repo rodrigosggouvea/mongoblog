@@ -1,19 +1,18 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <b><%= @article.author.name %> wrote:</b>
+  <b><%= @article.user.email %> wrote:</b>
   <h1><%= @article.title %></h1>
 </p>
 
 <p>
-  <b>Content:</b>
   <%= @article.content %>
 </p>
 
 <% if @article.comments.size > 0 %>
   <h2>Comments</h2>
   <% @article.comments.each do |comment| %>
-    <h3><%= comment.author.name %></h3>
+    <h3><%= comment.user.email %></h3>
     <p><%= comment.content %></p>
   <% end %>
 <% end %>
@@ -21,7 +20,7 @@
 <h2>New Comment</h2>
 
 <%= form_for [@article, Comment.new] do |f| %>
-  <%= f.hidden_field :user_id, :value => current_user %>
+  <%= f.hidden_field :user_id, :value => current_user.id %>
   <p><%= f.text_area :content, :rows => 10 %></p>
   <p><%= f.submit %></p>
 <% end %>
